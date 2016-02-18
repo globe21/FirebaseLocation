@@ -1,0 +1,6 @@
+framework module Pods_FirebaseLocation {
+  umbrella header "Pods-FirebaseLocation-umbrella.h"
+
+  export *
+  module * { export * }
+}

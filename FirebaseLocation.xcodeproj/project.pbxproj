@@ -7,6 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0A53BCF7A6A6954E09374D00 /* Pods_FirebaseLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5E95B61B0DEBAB5FF8819BFD /* Pods_FirebaseLocation.framework */; };
+		AB1014781C760BBA0006A4A1 /* FBSDKCoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AB1014751C760BBA0006A4A1 /* FBSDKCoreKit.framework */; };
+		AB1014791C760BBA0006A4A1 /* FBSDKLoginKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AB1014761C760BBA0006A4A1 /* FBSDKLoginKit.framework */; };
+		AB10147A1C760BBA0006A4A1 /* FBSDKShareKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AB1014771C760BBA0006A4A1 /* FBSDKShareKit.framework */; };
+		AB10147C1C760BEB0006A4A1 /* GoogleMaps.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AB10147B1C760BEB0006A4A1 /* GoogleMaps.framework */; };
 		AB1924D61C76078600BA94BF /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB1924D51C76078600BA94BF /* AppDelegate.swift */; };
 		AB1924D81C76078600BA94BF /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB1924D71C76078600BA94BF /* ViewController.swift */; };
 		AB1924DB1C76078600BA94BF /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AB1924D91C76078600BA94BF /* Main.storyboard */; };
@@ -15,6 +20,11 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		5E95B61B0DEBAB5FF8819BFD /* Pods_FirebaseLocation.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_FirebaseLocation.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		AB1014751C760BBA0006A4A1 /* FBSDKCoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FBSDKCoreKit.framework; sourceTree = "<group>"; };
+		AB1014761C760BBA0006A4A1 /* FBSDKLoginKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FBSDKLoginKit.framework; sourceTree = "<group>"; };
+		AB1014771C760BBA0006A4A1 /* FBSDKShareKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FBSDKShareKit.framework; sourceTree = "<group>"; };
+		AB10147B1C760BEB0006A4A1 /* GoogleMaps.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = GoogleMaps.framework; sourceTree = "<group>"; };
 		AB1924D21C76078500BA94BF /* FirebaseLocation.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FirebaseLocation.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		AB1924D51C76078600BA94BF /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		AB1924D71C76078600BA94BF /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -22,6 +32,8 @@
 		AB1924DC1C76078600BA94BF /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		AB1924DF1C76078600BA94BF /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		AB1924E11C76078600BA94BF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		D87FBBEF451CF9AAF12D8566 /* Pods-FirebaseLocation.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FirebaseLocation.release.xcconfig"; path = "Pods/Target Support Files/Pods-FirebaseLocation/Pods-FirebaseLocation.release.xcconfig"; sourceTree = "<group>"; };
+		F9A62BD813A8FCECB836D3AF /* Pods-FirebaseLocation.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FirebaseLocation.debug.xcconfig"; path = "Pods/Target Support Files/Pods-FirebaseLocation/Pods-FirebaseLocation.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -29,17 +41,33 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AB10147A1C760BBA0006A4A1 /* FBSDKShareKit.framework in Frameworks */,
+				0A53BCF7A6A6954E09374D00 /* Pods_FirebaseLocation.framework in Frameworks */,
+				AB1014781C760BBA0006A4A1 /* FBSDKCoreKit.framework in Frameworks */,
+				AB10147C1C760BEB0006A4A1 /* GoogleMaps.framework in Frameworks */,
+				AB1014791C760BBA0006A4A1 /* FBSDKLoginKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		04459F08A0838B127F86971D /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				F9A62BD813A8FCECB836D3AF /* Pods-FirebaseLocation.debug.xcconfig */,
+				D87FBBEF451CF9AAF12D8566 /* Pods-FirebaseLocation.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 		AB1924C91C76078500BA94BF = {
 			isa = PBXGroup;
 			children = (
 				AB1924D41C76078500BA94BF /* FirebaseLocation */,
 				AB1924D31C76078500BA94BF /* Products */,
+				04459F08A0838B127F86971D /* Pods */,
+				EDC36BC79FA276161653DFC5 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -64,6 +92,18 @@
 			path = FirebaseLocation;
 			sourceTree = "<group>";
 		};
+		EDC36BC79FA276161653DFC5 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				AB10147B1C760BEB0006A4A1 /* GoogleMaps.framework */,
+				AB1014751C760BBA0006A4A1 /* FBSDKCoreKit.framework */,
+				AB1014761C760BBA0006A4A1 /* FBSDKLoginKit.framework */,
+				AB1014771C760BBA0006A4A1 /* FBSDKShareKit.framework */,
+				5E95B61B0DEBAB5FF8819BFD /* Pods_FirebaseLocation.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -71,9 +111,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = AB1924E41C76078600BA94BF /* Build configuration list for PBXNativeTarget "FirebaseLocation" */;
 			buildPhases = (
+				AD612D2587657D2BF442D239 /* Check Pods Manifest.lock */,
 				AB1924CE1C76078500BA94BF /* Sources */,
 				AB1924CF1C76078500BA94BF /* Frameworks */,
 				AB1924D01C76078500BA94BF /* Resources */,
+				EC5AE6785CCBC4997C1D21EB /* Embed Pods Frameworks */,
+				196DD551B082872DFC8D72DF /* Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -129,6 +172,54 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		196DD551B082872DFC8D72DF /* Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-FirebaseLocation/Pods-FirebaseLocation-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		AD612D2587657D2BF442D239 /* Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		EC5AE6785CCBC4997C1D21EB /* Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-FirebaseLocation/Pods-FirebaseLocation-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		AB1924CE1C76078500BA94BF /* Sources */ = {
@@ -245,8 +336,13 @@
 		};
 		AB1924E51C76078600BA94BF /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = F9A62BD813A8FCECB836D3AF /* Pods-FirebaseLocation.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
 				INFOPLIST_FILE = FirebaseLocation/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.jampps.FirebaseLocation;
@@ -256,8 +352,13 @@
 		};
 		AB1924E61C76078600BA94BF /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = D87FBBEF451CF9AAF12D8566 /* Pods-FirebaseLocation.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
 				INFOPLIST_FILE = FirebaseLocation/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.jampps.FirebaseLocation;
@@ -284,6 +385,7 @@
 				AB1924E61C76078600BA94BF /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
