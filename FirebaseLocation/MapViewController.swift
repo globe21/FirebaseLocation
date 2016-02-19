@@ -18,7 +18,9 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
     
     var locationManager: CLLocationManager?
     
-    var hasOrientated = false
+    var tracking = false
+    
+    var displayName: String?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -44,6 +46,8 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
         let span = MKCoordinateSpanMake(0.05, 0.05)
         let region = MKCoordinateRegion(center: location, span: span)
         mapView.setRegion(region, animated: true)
+        
+        mapView.showsUserLocation = true
         
         self.view = mapView
     }
@@ -83,25 +87,6 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
         }];*/
     }
     
-    // Change where the camera is on the map
-    func updateCameraWithLocation(location: CLLocation) {
-        /*
-        NSLog(@"Updating camera");
-        GMSCameraPosition *oldPosition = [self.mapView_ camera];
-        GMSCameraPosition *position = [[GMSCameraPosition alloc] initWithTarget:[location coordinate] zoom:[oldPosition zoom] bearing:[location course] viewingAngle:[oldPosition viewingAngle]];
-        [self.mapView_ setCamera:position];*/
-    }
-    
-    
-    // Logged-out user experience
-    //func loginViewShowingLoggedOutUser(loginView: FBLoginView)
-    //{
-    /*
-    NSLog(@"FB: logged out");
-    AppDelegate *appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
-    [appDelegate deauthToFirebase];*/
-    //}
-    
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -120,8 +105,6 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
         locationManager!.delegate = self
         locationManager?.desiredAccuracy = kCLLocationAccuracyBest
         locationManager?.distanceFilter = 5
-        
-        hasOrientated = false
         
         locationManager!.requestWhenInUseAuthorization()
         
@@ -155,31 +138,33 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
     
     // This function executes once per location update
     func locationManager(manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-        /*
-        CLLocation *loc = locations[0];
-        if (!self.hasOrientated_) {
-        // Set map to the user's location on initial login
-        ViewController* controller = (ViewController*) self.window.rootViewController;
-        [controller updateCameraWithLocation:loc];
-        self.hasOrientated_ = true;
-        }
-        if (self.displayName_) {
-        // If the user has logged in, update firebase with the new location
-        NSDictionary *value = @{
-        @"coords": @{
-        @"accuracy" : [NSNumber numberWithDouble:loc.horizontalAccuracy],
-        @"latitude" : [NSNumber numberWithDouble:loc.coordinate.latitude],
-        @"longitude" : [NSNumber numberWithDouble:loc.coordinate.longitude]
-        },
-        @"timestamp" : [NSNumber numberWithInt:[[NSNumber numberWithDouble:loc.timestamp.timeIntervalSince1970 * 1000] intValue]]
-        };
-        Firebase *positionRef = [[[Firebase alloc] initWithUrl:@"https://location-demo.firebaseio.com"] childByAppendingPath:self.displayName_];
-        [positionRef setValue:value];
-        // if the user disconnects, remove his data from firebase
-        [positionRef onDisconnectRemoveValue];
-        }*/
-    }
+        let userLocation: CLLocation = locations[0]
     
+        if !tracking {
+        
+            let location: CLLocationCoordinate2D = CLLocationCoordinate2DMake(userLocation.coordinate.latitude, userLocation.coordinate.longitude)
+        
+            let span: MKCoordinateSpan = MKCoordinateSpanMake(0.01, 0.01)
+            let region: MKCoordinateRegion = MKCoordinateRegionMake(location, span)
+        
+            mapView.setRegion(region, animated: true)
+            
+            tracking = true
+        }
+        
+        
+        let value = [
+            "coords" : [
+                "accuracy" : NSNumber(double: userLocation.horizontalAccuracy),
+                "latitude" : NSNumber(double: userLocation.coordinate.latitude),
+                "longitude" : NSNumber(double: userLocation.coordinate.longitude)],
+            "timestamp" : NSNumber(longLong: Int64(userLocation.timestamp.timeIntervalSince1970 * 1000))]
+        
+        let positionRef = Firebase(url: "https://location-app.firebaseio.com/users").childByAppendingPath(displayName!)
+        
+        positionRef.setValue(value)
+        positionRef.onDisconnectRemoveValue()
+    }
 }
 
 

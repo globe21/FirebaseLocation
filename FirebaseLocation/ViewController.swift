@@ -34,7 +34,6 @@ class ViewController: UIViewController, FBSDKLoginButtonDelegate {
         } else {
             print("Logged In")
             authToFirebase()
-            self.performSegueWithIdentifier("showMap", sender: self)
         }
     }
     
@@ -50,9 +49,19 @@ class ViewController: UIViewController, FBSDKLoginButtonDelegate {
                 } else {
                     print("Logged in! \(authData)")
                     
-                    print(authData.providerData["displayName"]!)
+                    let displayName = authData.providerData["displayName"] as? String
+                    
+                    self.performSegueWithIdentifier("showMap", sender: displayName)
                 }
         })
+    }
+    
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if segue.identifier == "showMap" {
+            let vc = segue.destinationViewController as! MapViewController
+            vc.displayName = sender as! String?
+        }
     }
     
     
@@ -64,8 +73,6 @@ class ViewController: UIViewController, FBSDKLoginButtonDelegate {
             
             authToFirebase()
             
-            
-            self.performSegueWithIdentifier("showMap", sender: self)
         } else {
             print(error.localizedDescription)
         }
@@ -73,6 +80,8 @@ class ViewController: UIViewController, FBSDKLoginButtonDelegate {
     
     func loginButtonDidLogOut(loginButton: FBSDKLoginButton!) {
         print("User logged out")
+        
+        
     }
     
 
