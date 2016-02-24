@@ -56,35 +56,42 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
     // Setup firebase listerners to handle other users' locations
     func listenForLocations()
     {
-        // House all the markers in a map
-        /*
-        self.usersToMarkers_ = [NSMapTable mapTableWithKeyOptions:NSMapTableStrongMemory valueOptions:NSMapTableWeakMemory];
-        Firebase *ref = [[Firebase alloc] initWithUrl:@"https://location-demo.firebaseio.com"];
+        usersToMarkers = NSMapTable(keyOptions: .StrongMemory, valueOptions: .WeakMemory)
+        let usersRef = Firebase(url: "https://location-app.firebaseio.com/users")
+        
         // Listen for new users
-        [ref observeEventType:FEventTypeChildAdded withBlock:^(FDataSnapshot *s2) {
-        // Listen for updates for each user
-        [[ref childByAppendingPath:s2.name] observeEventType:FEventTypeValue withBlock:^(FDataSnapshot *snapshot) {
-        // Check to see if user was updated or removed
-        if (snapshot.value != [NSNull null]) {
-        // Location updated, create/move the marker
-        GMSMarker *marker = [self.usersToMarkers_ objectForKey:snapshot.name];
-        if (!marker) {
-        marker = [[GMSMarker alloc] init];
-        marker.title = snapshot.name;
-        marker.map = self.mapView_;
-        [self.usersToMarkers_ setObject:marker forKey:snapshot.name];
+        
+        usersRef.observeEventType(FEventType.ChildAdded) { (snapshot: FDataSnapshot!) -> Void in
+            // Listen for updates for each user
+            usersRef.childByAppendingPath(snapshot.key).observeEventType(FEventType.Value, withBlock: { (snapshot2: FDataSnapshot!) -> Void in
+                
+                if snapshot2.value != nil {
+                    // Location updated, create/move the marker
+                    
+                    let coord = snapshot2.value.valueForKey("coords") as! NSDictionary
+
+                    let position = CLLocationCoordinate2DMake(coord["latitude"]!.doubleValue, coord["longitude"]!.doubleValue)
+                    
+                    var annotation = self.usersToMarkers?.objectForKey(snapshot.key) as! MKPointAnnotation?
+                    
+                    if annotation == nil {
+                        annotation = MKPointAnnotation()
+                        annotation!.title = snapshot.key
+                        self.mapView.addAnnotation(annotation!)
+                        self.usersToMarkers?.setObject(annotation, forKey: snapshot.key)
+                    }
+                    
+                    annotation!.coordinate = position
+                } else {
+                    // User was removed, remove the marker
+                    let annotation = self.usersToMarkers?.objectForKey(snapshot.key) as! MKPointAnnotation?
+                    if (annotation != nil) {
+                        self.mapView.removeAnnotation(annotation!)
+                        self.usersToMarkers?.removeObjectForKey(snapshot.key)
+                    }
+                }
+            })
         }
-        marker.position = CLLocationCoordinate2DMake([snapshot.value[@"coords"][@"latitude"] doubleValue], [snapshot.value[@"coords"][@"longitude"] doubleValue]);
-        } else {
-        // User was removed, remove the marker
-        GMSMarker *marker = [self.usersToMarkers_ objectForKey:snapshot.name];
-        if (marker) {
-        marker.map = nil;
-        [self.usersToMarkers_ removeObjectForKey:snapshot.name];
-        }
-        }
-        }];
-        }];*/
     }
     
     
